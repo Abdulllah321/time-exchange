@@ -36,29 +36,6 @@ $(document).ready(function () {
       $(".menu-btn i").toggleClass("active");
     });
   
-    //  Typing Text Animation  //
-  
-    var typed = new Typed(".typing", {
-      strings: [
-        "Software Developer",
-        "Digital Marketing",
-        "Graphic Designing",
-      ],
-      typeSpeed: 100,
-      backSpeed: 60,
-      loop: true
-    });
-  
-    var typed = new Typed(".typing-2", {
-      strings: [
-        "Software Developer",
-        "Digital Marketing",
-        "Graphic Designing",
-      ],
-      typeSpeed: 100,
-      backSpeed: 60,
-      loop: true
-    });
   
     //  Owl Carousel  //
   
@@ -120,6 +97,79 @@ $(document).ready(function () {
   
   
   // }
+
+  //currency converter
+  const exchangeRates = {
+    "USD": 278.50, // Example exchange rate to PKR
+    "EUR": 325.20, // Example exchange rate to PKR
+    "GBP": 378.90, // Example exchange rate to PKR
+    "PKR": 1 // PKR to PKR
+    // Add more currencies and their exchange rates to PKR as needed
+};
+
+function convertCurrency() {
+    const amount = parseFloat(document.getElementById('amount').value);
+    const fromCurrency = document.getElementById('fromCurrency').value;
+    const toCurrency = document.getElementById('toCurrency').value;
+
+    const fromRate = exchangeRates[fromCurrency];
+    const toRate = exchangeRates[toCurrency];
+
+    const convertedAmount = (amount * fromRate) / toRate;
+
+    document.getElementById('result').innerText = `${amount} ${fromCurrency} = ${convertedAmount.toFixed(2)} ${toCurrency}`;
+}
+
+//Add Slider
+const slider = document.querySelector('.slider');
+const images = slider.querySelectorAll('img');
+let currentSlide = 0;
+
+// Function to show the current slide
+function showSlide(index) {
+  // Hide all slides
+  images.forEach((image) => {
+    image.classList.remove('active');
+  });
+  
+  // Ensure index is within bounds
+  if (index < 0) {
+    currentSlide = images.length - 1;
+  } else if (index >= images.length) {
+    currentSlide = 0;
+  } else {
+    currentSlide = index;
+  }
+  
+  // Show the current slide
+  images[currentSlide].classList.add('active');
+}
+
+// Show the first slide initially
+showSlide(currentSlide);
+
+// Automatic slide change every 3 seconds (adjust as needed)
+setInterval(() => {
+  showSlide(currentSlide + 1);
+}, 4000);
+
+// Manual slide navigation with buttons
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+prevBtn.addEventListener('click', () => {
+  showSlide(currentSlide - 1);
+});
+
+nextBtn.addEventListener('click', () => {
+  showSlide(currentSlide + 1);
+});
+
+
+
+
+ 
+document.addEventListener('DOMContentLoaded', populateTable);
   
     const nome = document.getElementById('naam');
     const mail = document.getElementById('emaal');
